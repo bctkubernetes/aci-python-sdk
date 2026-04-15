@@ -9,7 +9,7 @@ from aci import ACI
 from aci.meta_functions import ACIExecuteFunction, ACISearchFunctions
 from aci.types.enums import FunctionDefinitionFormat
 
-ACI_API_KEY = os.getenv("ACI_API_KEY")
+ACI_API_KEY = os.getenv("APPS_API_KEY") or os.getenv("ACI_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 

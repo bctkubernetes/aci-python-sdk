@@ -54,7 +54,7 @@ class ACI:
             If no value found for base_url, it will use the default value.
         """
         if api_key is None:
-            api_key = os.environ.get("ACI_API_KEY")
+            api_key = os.environ.get("APPS_API_KEY") or os.environ.get("ACI_API_KEY")
         if api_key is None:
             raise APIKeyNotFound("The API key is not found.")
         self.api_key = api_key

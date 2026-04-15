@@ -22,7 +22,7 @@ def test_client_initialization() -> None:
 def test_client_initialization_without_api_key() -> None:
     with pytest.raises(APIKeyNotFound):
         # unset ACI_API_KEY environment variable
-        os.environ.pop("ACI_API_KEY", None)
+        os.environ.pop("APPS_API_KEY", None); os.environ.pop("ACI_API_KEY", None)
         ACI(api_key=None, base_url=MOCK_BASE_URL)
 
 

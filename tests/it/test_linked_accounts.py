@@ -7,7 +7,7 @@ from aci import ACI
 from aci.types.enums import SecurityScheme
 from aci.types.linked_accounts import LinkedAccount
 
-ACI_API_KEY = os.getenv("ACI_API_KEY")
+ACI_API_KEY = os.getenv("APPS_API_KEY") or os.getenv("ACI_API_KEY")
 
 """
 The codease doesn't use load_dotenv() so you need to set the environment variables manually.

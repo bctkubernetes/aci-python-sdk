@@ -5,7 +5,7 @@ import pytest
 from aci import ACI
 from aci.types.enums import SecurityScheme
 
-ACI_API_KEY = os.getenv("ACI_API_KEY")
+ACI_API_KEY = os.getenv("APPS_API_KEY") or os.getenv("ACI_API_KEY")
 
 """
 The codease doesn't use load_dotenv() so we need to set the environment variables manually.
