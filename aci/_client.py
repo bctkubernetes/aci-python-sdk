@@ -107,7 +107,7 @@ class ACI:
         """Routes and executes function calls based on the function name.
         This can be a convenience function to handle function calls from LLM without you checking the function name.
 
-        It supports handling built-in meta functions (ACI_SEARCH_FUNCTIONS, ACI_EXECUTE_FUNCTION) and also handling executing third-party functions
+        It supports handling built-in meta functions (APPS_SEARCH_FUNCTIONS, APPS_EXECUTE_FUNCTION) and also handling executing third-party functions
         directly like BRAVE_SEARCH__WEB_SEARCH.
 
         Args:
@@ -117,7 +117,7 @@ class ACI:
             You need to first link corresponding account with the same owner id in the ACI dashboard (https://platform.aci.dev).
             allowed_apps_only: Deprecated, use `allowed_only` instead. If true, only returns enabled functions of apps that are allowed to be used by the agent/accessor, identified by the api key.
             allowed_only: If true, only returns enabled functions of apps that are allowed to be used by the agent/accessor, identified by the api key.
-            format: Decides the function definition format returned by ACI_SEARCH_FUNCTIONS (which fundamnetally is 'functions.search')
+            format: Decides the function definition format returned by APPS_SEARCH_FUNCTIONS (which fundamnetally is 'functions.search')
         Returns:
             Any: The result (serializable) of the function execution. It varies based on the function.
         """
@@ -141,7 +141,7 @@ class ACI:
 
         elif function_name == ACIExecuteFunction.get_name():
             # TODO: sometimes when using the fixed_tool approach llm most time doesn't put input arguments in the
-            # 'function_arguments' key as defined in ACI_EXECUTE_FUNCTION schema,
+            # 'function_arguments' key as defined in APPS_EXECUTE_FUNCTION schema,
             # so we need to handle that here. It is a bit hacky, we should improve this in the future
             # TODO: consider adding post processing to auto fix all common errors in llm generated input arguments
             function_arguments = ACIExecuteFunction.wrap_function_arguments_if_not_present(

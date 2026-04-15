@@ -1,8 +1,8 @@
 """
-This module defines the ACI_SEARCH_FUNCTIONS meta function, which can be used by LLMs/Agents to search for
+This module defines the APPS_SEARCH_FUNCTIONS meta function, which can be used by LLMs/Agents to search for
 relevant executable functions that can help complete tasks.
 
-The ACI_SEARCH_FUNCTIONS is basically the json schema version of the SDK's client.functions.search(...) method,
+The APPS_SEARCH_FUNCTIONS is basically the json schema version of the SDK's client.functions.search(...) method,
 but simplified with less parameters to make it more reliable for LLM function calling:
 - It focuses primarily on the 'intent' parameter to find relevant functions
 - It omits 'app_names', 'allowed_only', 'format' parameters to simplify the interface
@@ -19,7 +19,7 @@ class ACISearchFunctions(MetaFunctionBase):
     @classmethod
     def _get_base_schema(cls) -> dict:
         return {
-            "name": "ACI_SEARCH_FUNCTIONS",
+            "name": "APPS_SEARCH_FUNCTIONS",
             "description": "This function allows you to find relevant executable functions and their schemas that can help complete your tasks.",
             "parameters": {
                 "type": "object",

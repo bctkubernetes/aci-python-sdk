@@ -1,16 +1,16 @@
 """
-This module defines the ACI_EXECUTE_FUNCTION meta function, which can be used by LLMs to send
+This module defines the APPS_EXECUTE_FUNCTION meta function, which can be used by LLMs to send
 execution requests for functions discovered and selected through the ACISearchFunctions.
 
-The ACI_EXECUTE_FUNCTION is the json schema version of the SDK's client.functions.execute(...) method,
+The APPS_EXECUTE_FUNCTION is the json schema version of the SDK's client.functions.execute(...) method,
 adapted for LLM function calling:
 - It requires 'function_name' to specify which function to execute
 - It requires 'function_arguments' containing parameters needed by the target function
 - The 'linked_account_owner_id' parameter is removed here to avoid LLM hallucination. It should be passed directly to client.handle_function_call(...)
 
 This is typically the final step in the dynamic function discovery and execution flow:
-1. Use ACI_SEARCH_FUNCTIONS to find relevant functions
-2. Use ACI_EXECUTE_FUNCTION to actually execute the chosen function with the proper arguments
+1. Use APPS_SEARCH_FUNCTIONS to find relevant functions
+2. Use APPS_EXECUTE_FUNCTION to actually execute the chosen function with the proper arguments
 
 Note: The module contains a helper function that fixes cases where LLMs might incorrectly
 format function arguments, ensuring more reliable execution.
@@ -23,7 +23,7 @@ class ACIExecuteFunction(MetaFunctionBase):
     @classmethod
     def _get_base_schema(cls) -> dict:
         return {
-            "name": "ACI_EXECUTE_FUNCTION",
+            "name": "APPS_EXECUTE_FUNCTION",
             "description": "Execute a specific retrieved function. Provide the executable function name, and the "
             "required function parameters for that function based on function definition retrieved.",
             "parameters": {
