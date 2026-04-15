@@ -41,12 +41,14 @@ class ACI:
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
+        caller_authorization: str | None = None,
     ) -> None:
         """Create and initialize a new ACI client.
 
         Args:
             api_key: The API key to use for authentication.
             base_url: The base URL to use for the API requests.
+            caller_authorization: The caller's authorization token (JWT).
             If values are not provided it will try to read from the corresponding environment variables.
             If no value found for api_key, it will raise APIKeyNotFound.
             If no value found for base_url, it will use the default value.
@@ -64,6 +66,15 @@ class ACI:
             "Content-Type": "application/json",
             "x-api-key": api_key,
         }
+
+        if caller_authorization is None:
+            caller_authorization = os.environ.get("ACI_CALLER_AUTHORIZATION")
+
+        if caller_authorization:
+            if not caller_authorization.lower().startswith("bearer "):
+                caller_authorization = f"Bearer {caller_authorization}"
+            self.headers["Authorization"] = caller_authorization
+
         self.httpx_client = httpx.Client(base_url=self.base_url, headers=self.headers)
 
         # Initialize resource clients
