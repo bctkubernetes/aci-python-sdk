@@ -68,7 +68,7 @@ class ACI:
         }
 
         if caller_authorization is None:
-            caller_authorization = os.environ.get("ACI_CALLER_AUTHORIZATION")
+            caller_authorization = os.environ.get("APPS_CALLER_AUTHORIZATION")
 
         if caller_authorization:
             if not caller_authorization.lower().startswith("bearer "):

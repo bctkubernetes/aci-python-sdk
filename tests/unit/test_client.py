@@ -39,6 +39,6 @@ def test_client_initialization_with_caller_auth() -> None:
 
 def test_client_initialization_with_caller_auth_env(monkeypatch: pytest.MonkeyPatch) -> None:
     caller_auth = "env-token"
-    monkeypatch.setenv("ACI_CALLER_AUTHORIZATION", caller_auth)
+    monkeypatch.setenv("APPS_CALLER_AUTHORIZATION", caller_auth)
     client = ACI(api_key=MOCK_API_KEY, base_url=MOCK_BASE_URL)
     assert client.headers["Authorization"] == f"Bearer {caller_auth}"
